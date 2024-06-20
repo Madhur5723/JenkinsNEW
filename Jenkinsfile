@@ -15,7 +15,10 @@ pipeline {
                 node --version
                 npm --version
                 npm cache clean --force
-                chown -R 127:133 ~/.npm || true
+                # Use a local cache directory
+                npm config set cache ~/.npm-cache --global
+                # Ensure permissions for the cache directory
+                mkdir -p ~/.npm-cache && chown -R $(id -u):$(id -g) ~/.npm-cache
                 rm -rf node_modules
                 rm -f package-lock.json
 
