@@ -15,7 +15,7 @@ pipeline {
                 node --version
                 npm --version
                 npm cache clean --force
-                sudo chown -R 127:133 ~/.npm
+                chown -R 127:133 ~/.npm || true
                 rm -rf node_modules
                 rm -f package-lock.json
 
@@ -30,9 +30,8 @@ pipeline {
             }
         }
 
-        stage('Test')
-        {
-            steps{
+        stage('Test') {
+            steps {
                 echo 'Test Stage'
             }
         }
