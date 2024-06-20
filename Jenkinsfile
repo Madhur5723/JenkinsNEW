@@ -17,8 +17,13 @@ pipeline {
                 npm cache clean --force
                 rm -rf node_modules
                 rm -f package-lock.json
-                npm ci
+
+                # Install dependencies
+                npm install
+                
+                # Run the build
                 npm run build
+                
                 ls -la
                 '''
             }
