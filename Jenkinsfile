@@ -9,13 +9,15 @@ pipeline {
                     reuseNode true
                 }
             }
+            environment {
+                NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
+            }
             steps {
                 sh '''
                 ls -la
                 node --version
                 npm --version
                 npm cache clean --force
-                sudo chown -R 127:133 ~/.npm
                 rm -rf node_modules
                 rm -f package-lock.json
 
